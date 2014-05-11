@@ -48,7 +48,9 @@ FormProcessor.prototype = {
 
     var curDate = data.startDate;
     var totalTrips = 0;
+    var days = 0;
     while (curDate <= data.endDate) {
+      days++;
       if (curDate.getDay() === 0 || curDate.getDay() === 6) {
         totalTrips += data.tripsWeekendDay;
       } else {
@@ -58,7 +60,7 @@ FormProcessor.prototype = {
     }
 
     var $resultsDiv = jQuery('<div id="results" class="col-md-12"><h2>Results</h2></div>')
-      .append('By our calculations, you will make ' + totalTrips + ' payable trips during the given period.<br>');
+      .append('By our calculations, you will make ' + totalTrips + ' payable trips during the given period ('+days+' days).<br>');
     if (totalTrips * data.costSingleTrip > data.costMonthlyPass) {
       $resultsDiv.append(jQuery('<span class="text-success">You should buy your monthly pass!</span>'));
     } else {
