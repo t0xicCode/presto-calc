@@ -47,7 +47,9 @@ FormProcessor.prototype = {
     }
 
     var curDate = data.startDate;
+    var prevMonth = curDate.getMonth();
     var totalTrips = 0;
+    var totalMonths = 1;
     var days = 0;
     while (curDate <= data.endDate) {
       days++;
@@ -56,17 +58,24 @@ FormProcessor.prototype = {
       } else {
         totalTrips += data.tripsWorkDay;
       }
+      if (curDate.getMonth() !== prevMonth) {
+        totalMonths++;
+        prevMonth = curDate.getMonth();
+      }
       curDate.setDate(curDate.getDate() + 1);
     }
 
+    var totalCostSingles = totalTrips * data.costSingleTrip;
+    var totalCostMonthly = totalMonths * data.costMonthlyPass;
+
     var $resultsDiv = jQuery('<div id="results" class="col-md-12"><h2>Results</h2></div>')
       .append('By our calculations, you will make ' + totalTrips + ' payable trips during the given period ('+days+' days).<br>');
-    if (totalTrips * data.costSingleTrip > data.costMonthlyPass) {
-      $resultsDiv.append(jQuery('<span class="text-success">You should buy your monthly pass!</span>'));
+    if (totalCostSingles > totalCostMonthly) {
+      $resultsDiv.append(jQuery('<span class="text-success">You should buy monthly passes!</span>'));
     } else {
-      $resultsDiv.append(jQuery('<span class="text-danger">You should not buy your monthly pass!</span>'));
+      $resultsDiv.append(jQuery('<span class="text-danger">You should not buy monthly passes!</span>'));
     }
-    $resultsDiv.append('<br>It would cost you ' + totalTrips * data.costSingleTrip + ' to pay for each trip individually.');
+    $resultsDiv.append('<br>It would cost you $' + totalCostSingles.toFixed(2) + ' to pay for each trip individually, and $' + totalCostMonthly.toFixed(2) + ' using the monthly pass.');
 
     $form.parents('#config-form').before($resultsDiv);
 
