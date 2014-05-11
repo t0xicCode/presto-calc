@@ -1,6 +1,5 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: security.yml }
 
 framework:
     #esi:             ~
@@ -67,3 +66,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Bootstrap Configuration
+#braincrafted_bootstrap:
+#    less_filter: less

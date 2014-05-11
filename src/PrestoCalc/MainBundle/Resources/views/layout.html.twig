@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Presto Calculator{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% block stylesheets %}
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css" rel="stylesheet">
+    {% stylesheets '@PrestoCalcMainBundle/Resources/public/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+  {% endblock %}
+</head>
+<body>
+<div class="header">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>{{ block('title') }}</h1>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="container">
+    {% block body %}{% endblock %}
+  </div>
+</div>
+
+{% block javascripts %}
+  <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  {% javascripts '@PrestoCalcMainBundle/Resources/public/js/*' %}
+  <script src="{{ asset_url }}" type="text/javascript"></script>
+  {% endjavascripts %}
+{% endblock %}
+</body>
+</html>
+

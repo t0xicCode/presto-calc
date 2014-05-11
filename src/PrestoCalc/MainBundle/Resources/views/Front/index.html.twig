@@ -1,0 +1,90 @@
+{% extends 'PrestoCalcMainBundle::layout.html.twig' %}
+
+{% set values = data[city] %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-md-12" id="config-form">
+      <h2>Configuration</h2>
+
+      <form class="form-horizontal" role="form">
+        <fieldset>
+          <div class="form-group">
+            <label for="prestoSingleTrip" class="control-label col-sm-3">Cost of a single presto
+              trip</label>
+
+            <div class="col-sm-9">
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input name="prestoSingleTrip" id="prestoSingleTrip" type="text" class="form-control"
+                       value="{{ values.cost.singleTrip }}">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="prestoMonthlyPass" class="control-label col-sm-3">Cost of a monthly presto
+              pass</label>
+
+            <div class="col-sm-9">
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input name="prestoMonthlyPass" id="prestoMonthlyPass" type="text" class="form-control"
+                       value="{{ values.cost.monthlyPass }}">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Days</label>
+
+            <div class="col-sm-9">
+              <div class="input-group">
+                <input name="startDate" id="startDate" type="text" class="form-control"
+                       value="{{ data.dates.start.format('Y-m-d') }}">
+                <span class="input-group-addon">to</span>
+                <input name="endDate" id="endDate" type="text" class="form-control"
+                       value="{{ data.dates.end.format('Y-m-d') }}">
+              </div>
+              <span class="help-block">The days are inclusive. Use the following format: 'YYYY-MM-DD'.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tripsWorkDay" class="control-label col-sm-3">Average number of trips per week
+              day</label>
+
+            <div class="col-sm-9">
+              <input name="tripsWorkDay" id="tripsWorkDay" type="text" class="form-control"
+                     value="{{ values.trips.workDay }}">
+              <span class="help-block">Use only natural numbers (no fractions).</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tripsWeekendDay" class="control-label col-sm-3">Average number of trips per weekend
+              day</label>
+
+            <div class="col-sm-9">
+              <input name="tripsWeekendDay" id="tripsWeekendDay" type="text" class="form-control"
+                     value="{{ values.trips.weekendDay }}">
+              <span class="help-block">Use only natural numbers (no fractions).</span>
+            </div>
+          </div>
+        </fieldset>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-9">
+            <button onclick="event.preventDefault(); formProcessor.process(jQuery(this).parents('form'), this);"
+                    class="btn btn-default ladda-button" data-style="zoom-out" data-spinner-color="#000000"><span
+                  class="ladda-label">Calculate</span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    var formProcessor = new FormProcessor();
+  </script>
+{% endblock %}

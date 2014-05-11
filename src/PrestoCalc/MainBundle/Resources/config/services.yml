@@ -1,0 +1,9 @@
+parameters:
+#     presto_calc_main.example.class: PrestoCalc\MainBundle\Example
+
+services:
+     presto_calc_main.defaultdata:
+        class: PrestoCalc\MainBundle\DefaultData
+#     presto_calc_main.example:
+#        class: % presto_calc_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

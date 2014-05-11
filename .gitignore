@@ -13,3 +13,8 @@
 /vendor/
 /bin/
 /composer.phar
+
+# Vagrant
+/.vagrant/
+/puphpet/
+/Vagrantfile

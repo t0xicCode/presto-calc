@@ -1,18 +1,31 @@
 {
-    "name": "t0xicCode/presto-calc",
+    "name": "PrestoCalc/presto-calc",
     "description": "A simple webservice that calculates if it's worth it to purchase a presto monthly pass.",
     "minimum-stability": "dev",
     "license": "GPL2",
     "authors": [
         {
             "name": "Xavier L",
-            "email": "email@example.com"
+            "email": "xavier.l@t0xic.co.de"
         }
     ],
     "type": "project",
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.10.2",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.10.2.js",
+                    "type": "file"
+                }
+            }
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.4",

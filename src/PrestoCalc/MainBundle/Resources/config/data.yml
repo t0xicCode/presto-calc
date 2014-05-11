@@ -1,0 +1,10 @@
+cities:
+  - ottawa
+
+ottawa:
+  cost:
+    singleTrip: 2.72
+    monthlyPass: 98.75
+  trips:
+    workDay: 2
+    weekendDay: 1

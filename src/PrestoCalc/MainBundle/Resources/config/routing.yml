@@ -1,0 +1,7 @@
+presto_calc_main_homepage:
+    pattern:  /
+    defaults: { _controller: PrestoCalcMainBundle:Front:index }
+
+presto_calc_main_mainpage:
+    pattern:  /city/{city}
+    defaults: { _controller: PrestoCalcMainBundle:Front:index }

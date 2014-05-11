@@ -1,0 +1,4 @@
+PrestoCalc_main:
+    resource: "@PrestoCalcMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
