@@ -40,7 +40,7 @@ FormProcessor.prototype = {
       costMonthlyPass: parseFloat($form.find('#prestoMonthlyPass').val())
     };
 
-    if (data.endDate - data.startDate < 1) {
+    if ((data.endDate - data.startDate) < 1) {
       jQuery('<div id="errors" class="alert alert-danger">Your end date must be after your start date.</div>').insertBefore($form);
       l.stop();
       return false;
@@ -68,9 +68,8 @@ FormProcessor.prototype = {
     }
     $resultsDiv.append('<br>It would cost you ' + totalTrips * data.costSingleTrip + ' to pay for each trip individually.');
 
-    $resultsDiv.insertBefore($form.parents('#config-form'));
+    $form.parents('#config-form').before($resultsDiv);
 
-    console.log(data);
     l.stop();
   }
 };
